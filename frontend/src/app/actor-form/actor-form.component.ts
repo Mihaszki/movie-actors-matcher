@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { ActorsService } from '../actors.service';
 
 @Component({
   selector: 'app-actor-form',
@@ -8,13 +9,14 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class ActorFormComponent implements OnInit {
 
-  constructor() { }
+  constructor(private actorsService: ActorsService) { }
 
   actorForm = new FormGroup({
     name: new FormControl(''),
   });
 
   typingTimer: any;
+  actorsList: any = [];
 
   ngOnInit(): void {
   }
@@ -24,7 +26,11 @@ export class ActorFormComponent implements OnInit {
   }
 
   searchActor() {
-    console.log(this.actorForm.get('name')?.value);
+    this.actorsService.searchActor(this.actorForm.get('name')?.value)
+    .subscribe((data) => {
+      this.actorsList = data.results;
+      console.log(this.actorsList);
+    });
   }
 
   keyDown() {

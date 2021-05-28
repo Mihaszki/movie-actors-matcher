@@ -1,0 +1,11 @@
+<form [formGroup]="actorForm" (ngSubmit)="onSubmit()">
+  
+  <label>
+    Name:
+    <input type="text" placeholder="Brad Pitt" formControlName="name" (keyup)="keyUp()" (keydown)="keyDown()">
+  </label>
+
+  <button type="submit" [disabled]="!actorForm.valid">Add</button>
+
+  <div class="preview"></div>
+</form>

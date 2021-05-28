@@ -1,10 +1,8 @@
 @import '../../variables';
 
-.footer {
+.top {
   box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
   color: $color1;
-  a {color: $color1;}
   background: $bg1;
-  text-align: center;
   padding: 10px;
 }

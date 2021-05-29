@@ -16,7 +16,8 @@ export class ActorFormComponent implements OnInit {
   });
 
   typingTimer: any;
-  actorsList: any = [];
+  actorsList: any[] = [];
+  selectedPeople: any[] = [];
 
   ngOnInit(): void {
   }
@@ -25,11 +26,33 @@ export class ActorFormComponent implements OnInit {
     console.warn(this.actorForm.value);
   }
 
+  addActor(index: number) {
+    if(!this.selectedPeople.includes(this.actorsList[index])) {
+      this.selectedPeople.push(this.actorsList[index]);
+      this.actorsList[index].selected = true;
+    }
+    console.log(this.selectedPeople);
+  }
+
+  removeActor(index: number) {
+    const i = this.actorsList.indexOf(this.selectedPeople[index]);
+    this.actorsList[i].selected = false;
+    this.selectedPeople.splice(index, 1);
+    console.log(this.selectedPeople);
+  }
+
   searchActor() {
     this.actorsService.searchActor(this.actorForm.get('name')?.value)
     .subscribe((data) => {
-      this.actorsList = data.results;
-      console.log(this.actorsList);
+      this.actorsList = [];
+      for(const result of data.results) {
+        this.actorsList.push({
+          selected: false,
+          id: result.id,
+          name: result.name,
+          profile_path: result.profile_path
+        });
+      }
     });
   }
 
@@ -41,7 +64,7 @@ export class ActorFormComponent implements OnInit {
     clearTimeout(this.typingTimer);
     this.typingTimer = setTimeout(() => {
       this.searchActor();
-    }, 1000);
+    }, 100);
   }
 
 }

@@ -2,11 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ActorsService } from '../actors.service';
 import { Router } from '@angular/router';
+import { listAnimation } from '../animations';
 
 @Component({
   selector: 'app-actor-form',
   templateUrl: './actor-form.component.html',
   styleUrls: ['./actor-form.component.scss'],
+  animations: [listAnimation]
+
 })
 export class ActorFormComponent implements OnInit {
 
@@ -43,8 +46,10 @@ export class ActorFormComponent implements OnInit {
 
   removeActor(index: number) {
     const actor = this.actorsList.filter(el => el.id === this.selectedPeople[index].id);
-    const i = this.actorsList.indexOf(actor[0]);
-    this.actorsList[i].selected = false;
+    if(actor.length > 0) {
+      const i = this.actorsList.indexOf(actor[0]);
+      this.actorsList[i].selected = false;
+    }
     this.selectedPeople.splice(index, 1);
     console.log(this.selectedPeople);
   }

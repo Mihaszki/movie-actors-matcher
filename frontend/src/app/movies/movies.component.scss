@@ -1,11 +1,13 @@
 @import '../../variables';
 
+h2 {text-align: center;}
+
 .preview {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   .tile {
-    width: 40%;
+    width: 30%;
     display: flex;
     margin: 5px;
     height: 278px;
@@ -15,8 +17,9 @@
     transition: 0.5s all;
     .block {position: relative;}
     .stats {
-      font-size: 13px;
-      bottom: -16px;
+      width: 100%;
+      font-size: 10px;
+      bottom: -14px;
       position: absolute;
       left: 50%;
       -webkit-transform: translate(-50%, -50%);
@@ -31,6 +34,7 @@
     .title {
       background: rgba(0, 0, 0, 0.75);
       width: 100%;
+      font-size: 14px;
       padding: 10px 0;
       color: $color1;
     }
@@ -38,6 +42,46 @@
       display: block;
       height: 276px;
       width: 185px;
+    }
+  }
+}
+
+@media only screen and (max-width: 1600px) {
+  .preview {
+    .tile {
+      width: 40%;
+    }
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .preview {
+    .tile {
+      width: 75%;
+      font-size: 15px;
+    }
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .preview {
+    .tile {
+      width: 90%;
+      font-size: 14px;
+      img {
+        width: 170px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .preview {
+    .tile {
+      width: 100%;
+      img {
+        width: 150px;
+      }
     }
   }
 }

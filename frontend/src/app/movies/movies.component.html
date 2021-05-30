@@ -1,14 +1,16 @@
-<div class="preview">
+<h2 *ngIf="moviesList.length > 0">Top matched movies</h2>
+<h2 *ngIf="moviesList.length === 0" style="color:red;font-size:30px;">No movies found</h2>
+<div class="preview" *ngIf="moviesList.length > 0">
   <div class="tile" *ngFor="let movie of moviesList; let i = index">
     <div class="block poster">
       <img *ngIf="movie.poster_path !== null" src="{{'https://image.tmdb.org/t/p/w185/' + movie.poster_path}}" alt="{{movie.original_title}}">
       <img *ngIf="movie.poster_path === null" src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.svg" alt="{{movie.original_title}}">
     </div>
     <div class="block">
-      <div class="title"><span>{{movie.original_title}}</span></div>
-      <div class="desc"><span>{{(movie.overview.length>490) ? (movie.overview | slice:0:490)+'...' : (movie.overview)}}</span></div>
+      <div class="title"><span>{{(movie.original_title.length>34) ? (movie.original_title | slice:0:34)+'...' : (movie.original_title)}}</span></div>
+      <div class="desc"><span>{{(movie.overview.length>280) ? (movie.overview | slice:0:280)+'...' : (movie.overview)}}</span></div>
       <div class="stats">
-        <div class="date"><span>Release date: {{movie.release_date}}</span></div>
+        <div class="date"><span>Release date: {{movie.release_date ? movie.release_date : 'Not Found'}}</span></div>
         <div class="vote_average"><span>Average score: {{movie.vote_average}}</span></div>
         <div class="vote_count"><span>Number of votes: {{movie.vote_count}}</span></div>
       </div>

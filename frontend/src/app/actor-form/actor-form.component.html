@@ -1,5 +1,5 @@
 <form [formGroup]="actorForm" (ngSubmit)="onSubmit()">
-  <h2>Select your actors</h2>
+  <h2>Choose at least two people</h2>
   <label>
     Name:
     <input type="text" placeholder="Brad Pitt" formControlName="name" (keyup)="keyUp()" (keydown)="keyDown()">
@@ -15,11 +15,11 @@
       <img *ngIf="actor.profile_path === null" src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.svg" alt="{{actor.name}}">
       <div class="name">{{actor.name}}</div>
     </div>
-    <button type="submit" class="btn" [disabled]="!actorForm.valid || selectedPeople.length === 0">Search for matching movies</button>
+    <button type="submit" class="btn" [disabled]="!actorForm.valid || selectedPeople.length < 2">Search for matching movies</button>
   </div>
 
   <div class="preview">
-    <div class="tile" *ngFor="let actor of actorsList; let i = index" (click)="addActor(i)" [class.selected]="actor.selected">
+    <div class="tile" [@listAnimation]="actorsList.length" *ngFor="let actor of actorsList; let i = index" (click)="addActor(i)" [class.selected]="actor.selected">
       <img *ngIf="actor.profile_path !== null" src="{{'https://image.tmdb.org/t/p/w185/' + actor.profile_path}}" alt="{{actor.name}}">
       <img *ngIf="actor.profile_path === null" src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.svg" alt="{{actor.name}}">
       <div class="title"><span>{{actor.name}}</span></div>

@@ -4,6 +4,8 @@ form {
   margin: 0 auto;
   text-align: center;
   input[type=text] {
+    padding: 10px 15px;
+    width: 20%;
     transition: 0.5s all;
     padding: 10px;
     border: 1px solid $bg1;
@@ -54,9 +56,10 @@ form {
     position: relative;
     display: inline-block;
     height: 90px;
+    transition: 0.5s all;
     &:hover {
       cursor: pointer;
-      box-shadow: 0px 0px 8px 0px red;
+      filter: brightness(0.3);
     }
     .name {
       position: absolute;
@@ -92,8 +95,8 @@ form {
       box-shadow: 0px 0px 8px 0px $bg2;
     }
     &.selected {
-      box-shadow: 0px 0px 8px 0px $bg2;
-      filter: grayscale(1);
+      box-shadow: 0px 0px 8px 0px red;
+      filter: brightness(1.1);
     }
 
     .title {
@@ -110,5 +113,51 @@ form {
       height: 278px;
       width: 185px;
     }
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  form {
+    input[type=text] {
+      width: 30%;
+    }
+  }
+  .selected-list {
+    margin: 25px auto;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  form {
+    input[type=text] {
+      width: 50%;
+    }
+  }
+  .preview {
+    .tile {
+      height: 139px;
+      width: 93px;
+      .title {
+        font-size: 12px;
+      }
+      img {
+        height: 139px;
+        width: 93px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  form {
+    input[type=text] {
+      width: 70%;
+    }
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .selected-list {
+    .info {font-size: 11px;}
   }
 }

@@ -9,6 +9,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { ActorFormComponent } from './actor-form/actor-form.component';
+import { MoviesComponent } from './movies/movies.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ActorFormComponent } from './actor-form/actor-form.component';
     HeaderComponent,
     FooterComponent,
     TopBarComponent,
-    ActorFormComponent
+    ActorFormComponent,
+    MoviesComponent
   ],
   imports: [
     BrowserModule,

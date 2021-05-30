@@ -17,6 +17,13 @@ export class ActorsService {
       );
   }
 
+  searchMovies(query: String): Observable<any> {
+    return this.http.get<any>(`http://localhost:3000/api/people/movies/${query}`)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
       console.error('An error occurred:', error.error);

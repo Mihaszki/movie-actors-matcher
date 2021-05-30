@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ActorsService } from '../actors.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-actor-form',
@@ -9,7 +10,7 @@ import { ActorsService } from '../actors.service';
 })
 export class ActorFormComponent implements OnInit {
 
-  constructor(private actorsService: ActorsService) { }
+  constructor(private actorsService: ActorsService, private router: Router) { }
 
   actorForm = new FormGroup({
     name: new FormControl(''),
@@ -23,11 +24,17 @@ export class ActorFormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.warn(this.actorForm.value);
+    let value = '';
+    for(let i = 0; i < this.selectedPeople.length; i++) {
+      value += this.selectedPeople[i].id;
+      if(i < this.selectedPeople.length - 1) value += ',';
+    }
+    this.router.navigate(['movies', value]);
   }
 
   addActor(index: number) {
-    if(!this.selectedPeople.includes(this.actorsList[index])) {
+    const found = this.selectedPeople.some(el => el.id === this.actorsList[index].id);
+    if(!found) {
       this.selectedPeople.push(this.actorsList[index]);
       this.actorsList[index].selected = true;
     }
@@ -35,7 +42,8 @@ export class ActorFormComponent implements OnInit {
   }
 
   removeActor(index: number) {
-    const i = this.actorsList.indexOf(this.selectedPeople[index]);
+    const actor = this.actorsList.filter(el => el.id === this.selectedPeople[index].id);
+    const i = this.actorsList.indexOf(actor[0]);
     this.actorsList[i].selected = false;
     this.selectedPeople.splice(index, 1);
     console.log(this.selectedPeople);
@@ -46,8 +54,9 @@ export class ActorFormComponent implements OnInit {
     .subscribe((data) => {
       this.actorsList = [];
       for(const result of data.results) {
+        const found = this.selectedPeople.some(el => el.id === result.id);
         this.actorsList.push({
-          selected: false,
+          selected: found,
           id: result.id,
           name: result.name,
           profile_path: result.profile_path
@@ -64,7 +73,7 @@ export class ActorFormComponent implements OnInit {
     clearTimeout(this.typingTimer);
     this.typingTimer = setTimeout(() => {
       this.searchActor();
-    }, 100);
+    }, 200);
   }
 
 }

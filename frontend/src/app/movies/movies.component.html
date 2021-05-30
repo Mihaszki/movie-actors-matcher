@@ -1,0 +1,15 @@
+<div class="preview">
+  <div class="tile" *ngFor="let movie of moviesList; let i = index">
+    <div class="block poster">
+      <img *ngIf="movie.poster_path !== null" src="{{'https://image.tmdb.org/t/p/w185/' + movie.poster_path}}" alt="{{movie.original_title}}">
+      <img *ngIf="movie.poster_path === null" src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.svg" alt="{{movie.original_title}}">
+    </div>
+    <div class="block">
+      <div class="title"><span>{{movie.original_title}}</span></div>
+      <div class="desc"><span>{{movie.overview}}</span></div>
+      <div class="date"><span>{{movie.release_date}}</span></div>
+      <div class="vote_average"><span>{{movie.vote_average}}</span></div>
+      <div class="vote_count"><span>{{movie.vote_count}}</span></div>
+    </div>
+  </div>
+</div>

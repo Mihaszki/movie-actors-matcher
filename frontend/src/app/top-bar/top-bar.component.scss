@@ -5,4 +5,11 @@
   color: $color1;
   background: $bg1;
   padding: 10px;
+  a {
+    color: $color1;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }

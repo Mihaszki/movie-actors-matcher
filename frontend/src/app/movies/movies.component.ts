@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ActorsService } from '../actors.service';
+import { MoviesList } from '../interfaces';
 
 @Component({
   selector: 'app-movies',
@@ -12,7 +13,7 @@ export class MoviesComponent implements OnInit {
   constructor(private route: ActivatedRoute, private actorsService: ActorsService) { }
 
   actors_ids: string = '';
-  moviesList: any[] = [];
+  moviesList: MoviesList[] = [];
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {

@@ -3,6 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { ActorsService } from '../actors.service';
 import { Router } from '@angular/router';
 import { listAnimation } from '../animations';
+import { ActorList } from '../interfaces';
 
 @Component({
   selector: 'app-actor-form',
@@ -20,8 +21,8 @@ export class ActorFormComponent implements OnInit {
   });
 
   typingTimer: any;
-  actorsList: any[] = [];
-  selectedPeople: any[] = [];
+  actorsList: ActorList[] = [];
+  selectedPeople: ActorList[] = [];
 
   ngOnInit(): void {
   }

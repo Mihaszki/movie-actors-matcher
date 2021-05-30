@@ -3,7 +3,7 @@
 .preview {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: center;
   .tile {
     width: 40%;
     display: flex;
@@ -13,6 +13,21 @@
     border: 1px solid rgba(0, 0, 0, 0.75);
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
     transition: 0.5s all;
+    .block {position: relative;}
+    .stats {
+      font-size: 13px;
+      bottom: -16px;
+      position: absolute;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
+    .desc {
+      text-align: left;
+      padding: 5px;
+      overflow: hidden;
+      max-height: 186px;
+    }
     .title {
       background: rgba(0, 0, 0, 0.75);
       width: 100%;

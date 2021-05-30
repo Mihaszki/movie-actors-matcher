@@ -6,10 +6,12 @@
     </div>
     <div class="block">
       <div class="title"><span>{{movie.original_title}}</span></div>
-      <div class="desc"><span>{{movie.overview}}</span></div>
-      <div class="date"><span>{{movie.release_date}}</span></div>
-      <div class="vote_average"><span>{{movie.vote_average}}</span></div>
-      <div class="vote_count"><span>{{movie.vote_count}}</span></div>
+      <div class="desc"><span>{{(movie.overview.length>490) ? (movie.overview | slice:0:490)+'...' : (movie.overview)}}</span></div>
+      <div class="stats">
+        <div class="date"><span>Release date: {{movie.release_date}}</span></div>
+        <div class="vote_average"><span>Average score: {{movie.vote_average}}</span></div>
+        <div class="vote_count"><span>Number of votes: {{movie.vote_count}}</span></div>
+      </div>
     </div>
   </div>
 </div>

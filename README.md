@@ -7,7 +7,6 @@ In this application you can select at least two actors/actresses and see in whic
 ### Runnig frontend
 * Install node packages with `npm install`
 * Run in locally with `ng serve` or build it with `ng build`
-* You can edit API url in `backend.config.ts` file
 
 ### Runnig backend
 * Install node packages with `npm install`
